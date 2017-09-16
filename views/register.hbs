@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+{{{body}}}
+<h3>{{title}}</h3>
+<h4>注册--------------注册----------------------注册</h4>
+<form action="" id="form">
+    <ul>
+        <li><input type="text" name="username" id="username" placeholder="用户名"/></li>
+        <li><input type="text" name="password" id="password" placeholder="用户密码"/></li>
+        <li><input type="button" value="提交" id="sbt"></li>
+    </ul>
+</form>
+
+<a href="/">回到首页</a>
+<a href="/users">去登陆吧</a>
+</body>
+<script src="/javascript/jquery-3.2.1.min.js"></script>
+<script>
+    //var data = $("#form").serialize()
+    $("#sbt").on("click",function () {
+        $.ajax({
+            url:"/regist",
+            type:"post",
+            data:$("#form").serialize(),
+            success:function (res) {
+                var res = JSON.parse(res)
+                if(res.code === 200){
+                    window.location.href ="/load"
+                }
+            },
+            error:function () {
+
+            }
+        })
+    })
+</script>
+</html>
